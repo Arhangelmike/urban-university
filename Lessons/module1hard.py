@@ -17,3 +17,17 @@
 Помните, что множество не является упорядоченной последовательностью. (нужен перевод в другой тип).
 """
 
+students = {'Johnny', 'Bilbo', 'Steve', 'Khendrik', 'Aaron'}
+students_alf = sorted(students)
+print(students)
+print(students_alf)
+grades = [[5, 3, 3, 5, 4], [2, 2, 2, 3], [4, 5, 5, 2], [4, 4, 3], [5, 5, 5, 4, 5]]
+
+average = len(grades)
+
+aver= sum(grades[0])
+ave=aver/average
+
+print(average)
+print(aver)
+print(ave)
