@@ -7,5 +7,5 @@ def divide(first, second):
         rezult = first / second
         print(f'{rezult}')
     elif second == 0:
-        positive_infinity = math.inf
-        print('Positive Infinity: ', positive_infinity)
+        p_inf = math.inf
+        print('Positive Infinity: ', p_inf)
