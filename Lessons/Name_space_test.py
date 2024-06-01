@@ -12,8 +12,9 @@ def test_function():
     inner_function()
 
 #4. Попробуйте вызывать inner_function вне функции test_function и посмотрите на результат выполнения программы
-#OUTPUT^
+#inner_function()
+#OUTPUT:
 #NameError: name 'inner_function' is not defined. Did you mean: 'test_function'?
 #
-#inner_function()
+
 test_function()
