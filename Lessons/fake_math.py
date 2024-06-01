@@ -3,4 +3,6 @@ def divide(first, second):
         rezult = first / second
         print(f'{rezult}')
     elif second == 0:
-        print('Ошибка')
+        print('ZeroDivisionError: division by zero')
+
+

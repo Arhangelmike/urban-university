@@ -2,6 +2,7 @@ from true_math import divide as tm
 from fake_math import divide as fm
 
 
+
 def main():
     first_mt = input("first = ")
     second_mt = input("second = ")

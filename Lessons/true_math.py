@@ -9,3 +9,5 @@ def divide(first, second):
     elif second == 0:
         rezult = math.inf
         print('Positive Infinity: ', rezult)
+
+
