@@ -43,7 +43,7 @@ class Video:
             password = hash(input('Введите пароль1: '))
             if login in database.passdata:
                 if password == database.passdata[login]:
-                    print(f'Авторизация успешна!\nПриветствую {login}')
+                    print(f'Авторизация успешна! Приветствую {login}')
                     continue #--------тут нет перехода на просмотр уртуба -- и строка в консольном виде потом
                 else:
                     print('Wrong password!!!')
@@ -62,4 +62,4 @@ class Video:
             database.add_user(user.nickname, user.password, user.age)
             print(database.data)
             print(database.passdata)
-
+        input(f'{nickname}')
