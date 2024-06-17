@@ -1,7 +1,7 @@
 import time
 
 class Database:
-    def __init__(self):# create data structure dict + inside list
+    def __init__(self):# create data structure dict + inside list --  may be
         self.data = {}
         self.passdata = {}
 
@@ -37,14 +37,14 @@ class Video:
     if __name__ == '__main__':
         database = Database()
     while True:
-        choise = int(input("Приветствую!. Выберите действие: \n1 - Вход.\n2 - Регистарция.\n"))
+        choise = int(input(f'Приветствую!. Выберите действие: \n1 - Вход.\n2 - Регистарция.\n '))
         if choise == 1:
             login = input('Введите логин1: ')
             password = hash(input('Введите пароль1: '))
             if login in database.passdata:
                 if password == database.passdata[login]:
                     print(f'Авторизация успешна!\nПриветствую {login}')
-                    break
+                    continue #--------тут нет перехода на просмотр уртуба -- и строка в консольном виде потом
                 else:
                     print('Wrong password!!!')
             else:
