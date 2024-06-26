@@ -1,10 +1,21 @@
-class Buiding:
-    value = 0
-    def __init__(self):
-        Buiding.value += 1
-        print(f'Создан {Buiding.value} -й экземпляр класса')
+# import the time module 
+import time
 
-i=1
-while i <=40:
-    i += 1
-    h1 = Buiding()
+
+# define the countdown func.
+def countdown(t):
+    while t:
+        mins, secs = divmod(t, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        t -= 1
+
+    print('Fire in the hole!!')
+
+
+# input time in seconds 
+t = input("Enter the time in seconds: ")
+
+# function call 
+countdown(int(t)) 
