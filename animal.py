@@ -1,7 +1,8 @@
 class animal:
-    alive = True
-    fed = False
-    name = ''
+    def __init__(self):
+        self.alive = True
+        self.fed = False
+        self.name = ''
 
 
 class predator(animal):
@@ -39,8 +40,9 @@ class mammal(animal):
 
 
 class plant:
-    edible = False
-    name = ''
+    def __init__(self):
+        self.edible = False
+        self.name = ''
 
 
 class flower(plant):
