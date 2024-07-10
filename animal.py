@@ -1,13 +1,6 @@
 class Animal:
     alive = True
     fed = False
-    name = ''
-
-
-class Predator(Animal):
-    def __init__(self, name):
-        self.name = name
-        Animal.__init__(self)
 
     def eat(self, food):
         if food.edible is True:
@@ -20,25 +13,21 @@ class Predator(Animal):
             print(f'{self.name}  не стал есть {food.name} ')
 
 
+class Predator(Animal):
+    def __init__(self, name):
+        self.name = name
+        #Animal.__init__(self)
+
+
 class Mammal(Animal):
 
     def __init__(self, name):
         self.name = name
-        Animal.__init__(self)
-
-    def eat(self, food):
-        if Plant.edible is not True:
-            self.fed = True
-            self.alive = True
-            print(f'{self.name}  съел {food.name}')
-        else:
-            self.fed = False
-            self.alive = False
-            print(f'{self.name}  не стал есть   {food.name}')
+        #Animal.__init__(self)
 
 
 class Plant:
-    name = ''
+
     edible = False
 
 
