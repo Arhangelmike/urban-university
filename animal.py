@@ -5,7 +5,7 @@ class Animal:
     def __init__(self, name):
         self.name = name
     def eat(self, food):
-        if food.edible is True:
+        if food.edible:
             self.fed = True
             #self.alive = True
             print(f'{self.name}  съел {food.name}')
