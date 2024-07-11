@@ -7,7 +7,6 @@ class Animal:
     def eat(self, food):
         if food.edible:
             self.fed = True
-            #self.alive = True
             print(f'{self.name}  съел {food.name}')
         else:
             self.fed = False
