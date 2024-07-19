@@ -1,4 +1,5 @@
 class Venicle:
+
     owner: str
     __model: str
     __engine_power: int
@@ -20,7 +21,7 @@ class Venicle:
 
 
     def print_info(self):
-        print(f'{self.owner}')
+        print(self.owner)
         print(self.get_model)
         print(self.get_horsepower)
         print(self.get_color)
@@ -38,7 +39,7 @@ class Venicle:
 class Sedan(Venicle):
     __PASSENGERS_LIMIT = 5
     def __init__(self, *args):
-        self.owner =
+        pass
         # print(*args)
 
 
