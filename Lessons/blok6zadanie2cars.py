@@ -1,12 +1,14 @@
 class Venicle:
-
-    owner: str
-    __model: str
-    __engine_power: int
-    __color: str
     __COLOR_VARIANTS = ['black', 'grey', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'light_grey', 'dark_grey',
                         'light_red', 'light_green', 'light_yellow', 'light_blue', 'light_magenta', 'light_cyan',
                         'white']
+    def __init__(self, owner, model, color, engine_power):
+        self.owner = owner
+        self.__model = model
+        self.__engine_power = engine_power
+        self.__color = color
+
+
 
     def get_model(self):
         print(f'Модель: {self.__model}')
