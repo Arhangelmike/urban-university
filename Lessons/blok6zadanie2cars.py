@@ -33,8 +33,9 @@ class Venicle:
 
     def set_color(self, new_color):
         self.new_color = new_color
-        if new_color in Venicle.__COLOR_VARIANTS:
-            print(f'{new_color}')
+        if new_color.lower() in (item.lower() for item in self.__COLOR_VARIANTS):
+            #rint(f'Цвет: {new_color}')
+            self.__color = new_color
         else:
             print(f'Нельзя сменить цвет на {new_color}')
 
