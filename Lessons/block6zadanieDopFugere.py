@@ -1,3 +1,4 @@
+import random
 class Figure:
     sides_count = 0
 
@@ -7,27 +8,45 @@ class Figure:
         self.filled = bool # (закрашенный, bool)
 
     def get_color(self):
-        pass
+        self.R = random.randint(0, 255)
+        self.G = random.randint(0, 255)
+        self.B = random.randint(0, 255)
     '''возврат три числа каждое в диапазоне от 0 до 255'''
 
     def __is_valid_color(self, R, G, B):
-        pass
+        if all(0 <= value <= 255 for value in (R, G, B)):
+            print("Все значения R, G и B находятся в диапазоне от 0 до 255")
+        else:
+            print("Одно или несколько значений R, G или B находятся вне диапазона")
 
-    def __is_valid_sides(self, __sides):
-        pass
+    def __is_valid_sides(self, *args):
+        is_valid = False
+        args_list = list(args)
+        for i in args_list:
+            if i%1 != 0:
+                is_valid = False
+
+        if len(args_list) == self.sides_count:
+            is_valid = True
+        return is_valid
+
     '''принимает неограниченное кол-во сторон, 
     возвращает True если все стороны целые положительные числа и
      кол-во новых сторон совпадает с текущим, False - во всех остальных случаях.'''
 
     def get_sides(self):
-        pass # должен возвращать значениея атрибута __sides.
+       return self.__sides # должен возвращать значениея атрибута __sides.
 
     def __len__(self):
+
+
         pass #  возвращать периметр фигуры.
 
     def  set_sides(self, *new_sides):
-        pass #  принимать новые стороны, если их количество не равно sides_count,
-        # то не изменять, в противном случае - менять.
+        self.__is_valid_sides(*new_sides)
+        #side_list = list(new_sides)
+         #  принимать новые стороны, если их количество не равно sides_count,
+              # то не изменять, в противном случае - менять.
 
 class Circle(Figure):
     sides_count = 1
