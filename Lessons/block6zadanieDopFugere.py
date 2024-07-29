@@ -20,14 +20,8 @@ class Figure:
             print("Одно или несколько значений R, G или B находятся вне диапазона")
 
     def __is_valid_sides(self, *args):
-        is_valid = False
         args_list = list(args)
-        for i in args_list:
-            if i%1 != 0:
-                is_valid = False
-
-        if len(args_list) == self.sides_count:
-            is_valid = True
+        is_valid = all(i > 0 and isinstance(i, int) for i in args_list) and len(args_list) == self.sides_count
         return is_valid
 
     '''принимает неограниченное кол-во сторон, 
@@ -38,9 +32,8 @@ class Figure:
        return self.__sides # должен возвращать значениея атрибута __sides.
 
     def __len__(self):
-
-
-        pass #  возвращать периметр фигуры.
+        def __len__(self):
+            return sum(self.__sides) #  возвращать периметр фигуры.
 
     def  set_sides(self, *new_sides):
         self.__is_valid_sides(*new_sides)
