@@ -1,4 +1,4 @@
-import random
+import random, math
 class Figure:
     sides_count = 0
 
@@ -80,7 +80,9 @@ class Circle(Figure):
         self.__radius
 
     def get_square(self):
-        pass
+        Pi = math.pi
+        __radius = self.__sides/(2*Pi)
+        return Pi*__radius*__radius
     '''Атрибут __radius, рассчитать исходя из длины окружности (одной единственной стороны).
 Метод get_square возвращает площадь круга (можно рассчитать как через длину, так и через радиус).'''
 
