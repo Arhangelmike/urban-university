@@ -14,12 +14,14 @@ class Figure:
     '''возврат три числа каждое в диапазоне от 0 до 255'''
 
     def __is_valid_color(self, R, G, B):
+
         if all(0 <= value <= 255 for value in (R, G, B)):
             print("Все значения R, G и B находятся в диапазоне от 0 до 255")
         else:
             print("Одно или несколько значений R, G или B находятся вне диапазона")
 
     def __is_valid_sides(self, *args):
+
         args_list = list(args)
         is_valid = all(i > 0 and isinstance(i, int) for i in args_list) and len(args_list) == self.sides_count
         return is_valid
@@ -92,8 +94,11 @@ class Triangle(Figure):
     def __init__(self):
         self.__height
 
-    def get_square(self):
-        pass
+    def get_square(self, a, b, c):
+        p = (a+b+c)/2
+        h = 2*math.sqrt((p*(p-a)*(p-b)*(p-c))/a)
+        s = (a*h)/2
+        return s
     '''Атрибут __height, высота треугольника (можно рассчитать зная все стороны треугольника)
 Метод get_square возвращает площадь треугольника.'''
 
@@ -102,8 +107,11 @@ class Cube(Figure):
     def __init__(self):
         self.__sides
 
-    def get_volume(self):
-        pass
+    def get_volume(self, a):
+        for i in range(12):
+            self.__sides.append(a)
+        return a*a*a
+
     '''Переопределить __sides сделав список из 12 одинаковы сторон (передаётся 1 сторона)
 Метод get_volume, возвращает объём куба.'''
 
