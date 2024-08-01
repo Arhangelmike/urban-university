@@ -2,23 +2,27 @@ import random, math
 class Figure:
     sides_count = 0
 
-    def __init__(self):
-        self.__sides = () # (список сторон (целые числа))
-        self.__color = () # (список цветов в формате RGB)
-        self.filled = bool # (закрашенный, bool)
+    def __init__(self, color=(0, 0, 0), *sides):
+        self.__sides =  list(sides) # (список сторон (целые числа))
+        self.__color = list(color) # (список цветов в формате RGB)
+        self.filled = False # (закрашенный, bool)
 
     def get_color(self):
-        self.R = random.randint(0, 255)
-        self.G = random.randint(0, 255)
-        self.B = random.randint(0, 255)
+        return self.__color
     '''возврат три числа каждое в диапазоне от 0 до 255'''
 
-    def __is_valid_color(self, R, G, B):
 
+    def set_color(self, R, G, B):
+        if self.__is_valid_color(R, G, B):
+            self.__color = (R, G, B)
+
+    def __is_valid_color(self, R, G, B):
         if all(0 <= value <= 255 for value in (R, G, B)):
             print("Все значения R, G и B находятся в диапазоне от 0 до 255")
         else:
             print("Одно или несколько значений R, G или B находятся вне диапазона")
+
+
 
     def __is_valid_sides(self, *args):
 
@@ -37,49 +41,17 @@ class Figure:
         def __len__(self):
             return sum(self.__sides) #  возвращать периметр фигуры.
 
-    def  set_sides(self, *new_sides):
-        self.__is_valid_sides(*new_sides)
-        #side_list = list(new_sides)
-         #  принимать новые стороны, если их количество не равно sides_count,
-              # то не изменять, в противном случае - менять.
-        '''Там фишка в том, что если ты передаешь список, у которого длина совпадает с sides_count, то числа из списка это и есть длины сторон 
+    def set_sides(self, *new_sides):
+        if self.__is_valid_sides(*new_sides):
+            self.__sides = list(new_sides)
 
-Например: 
-Triangle((200, 200, 100), 10, 6, 7)
-10, 6, 7 — стороны треугольника
-
-Circle((200, 200, 100), 6)
-6 — длина окружности
-
-Если же передается список, длина которого равна 1 (то есть просто одно число), то все стороны у фигуры будут такой длины
-
-Например:
-Triangle((200, 200, 100), 10)
-10, 10, 10 — стороны треугольника
- 
-Cube((200, 200, 100), 9)
-9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 — стороны куба
-
-И третий вариант, когда передается список любой другой длины (кроме одного числа и sides_count), то все стороны у фигуры будут длины 1
-
-Например:
-Triangle((200, 200, 100), 10, 6)
-1, 1, 1 — стороны треугольника
-
-Triangle((200, 200, 100), 10, 6, 8, 11)
-1, 1, 1 — стороны треугольника 
-
-Circle((200, 200, 100), 10, 15, 6)
-1 — длина окружности 
-
-Cube((200, 200, 100), 9, 10, 6, 5)
-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 — стороны куба'''
 
 class Circle(Figure):
     sides_count = 1
 
-    def __init__(self):
-        self.__radius
+    def __init__(self, color, *sides):
+        super().__init__(color, *sides)
+        self.__radius = self._Figure__sides[0]
 
     def get_square(self):
         Pi = math.pi
@@ -104,8 +76,9 @@ class Triangle(Figure):
 
 class Cube(Figure):
     sides_count = 12
-    def __init__(self):
-        self.__sides
+    def __init__(self, color, *sides):
+        super().__init__(color, *sides)
+        self.__sides = self.sides_count
 
     def get_volume(self, a):
         for i in range(12):
