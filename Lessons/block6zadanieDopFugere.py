@@ -4,7 +4,7 @@ class Figure:
 
     def __init__(self, color=(0, 0, 0), *sides):
         self.__color = list(color)
-        self.__sides = list(sides) if self.__is_valid_sides(*sides) else [1] * self.sides_count
+        self.__sides = list(sides) if self.__is_valid_sides(*sides) else [1] * self.sides_countt
         self.filled = False
 
 
@@ -30,7 +30,7 @@ class Figure:
      кол-во новых сторон совпадает с текущим, False - во всех остальных случаях.'''
 
     def get_sides(self):
-       return self.__sides # должен возвращать значениея атрибута __sides.
+        return self.__sides
 
     def __len__(self):
         return sum(self.__sides) #  возвращать периметр фигуры.
