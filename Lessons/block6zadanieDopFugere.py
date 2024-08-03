@@ -67,6 +67,7 @@ class Triangle(Figure):
 class Cube(Figure):
     sides_count = 12
 
+
     def __init__(self, color, *sides):
         side = sides[0] if len(sides) == 1 else 1
         super().__init__(color, *[side] * self.sides_count)
