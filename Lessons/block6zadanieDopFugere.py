@@ -4,7 +4,7 @@ class Figure:
 
     def __init__(self, color=(0, 0, 0), *sides):
         self.__color = list(color)
-        self.__sides = list(sides) if self.__is_valid_sides(*sides) else [1] * self.sides_count
+        self.__sides = list(sides)
         self.filled = False
 
 
@@ -38,38 +38,45 @@ class Figure:
         return sum(self.__sides) #  возвращать периметр фигуры.
 
 class Circle(Figure):
-    sides_count = 1
+
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
-        #self.__radius = self._Figure__sides[0]
+        self.sides_count = 1
+        self.__radius = self.__sides/(2 * math.pi)
+
 
     def get_square(self):
-        Pi = math.pi
-        self.__radius = self.__sides/(2*Pi)
-        R = self.__radius
-        return Pi * R * R
+        return math.pi * self.__radius * self.__radius
 
 
 class Triangle(Figure):
-    sides_count = 3
-    def __init__(self):
-        self.__height
 
-    def get_square(self, a, b, c):
-        p = (a+b+c)/2
-        h = 2*math.sqrt((p*(p-a)*(p-b)*(p-c))/a)
-        s = (a*h)/2
-        return s
-    '''Атрибут __height, высота треугольника (можно рассчитать зная все стороны треугольника)
-Метод get_square возвращает площадь треугольника.'''
+    def __init__(self, color, *sides):
+        super().__init__(color, *sides)
+        self.sides_count = 3
+        self.triangle_side_list = list(sides)
+        if len(self.triangle_side_list) == self.sides_count:
+            for i in range(self.triangle_side_list):
+                a = self.triangle_side_list[0]
+                b = self.triangle_side_list[1]
+                c = self.triangle_side_list[2]
+
+                p = (a + b + c) / 2
+                print (a, b, c, p)
+        self.__height = 2 * math.sqrt((p * (p-a)*(p-b)*(p-c))/a)
+
+    def get_square(self):
+        return (self.a * self.__height)/2
+
 
 class Cube(Figure):
     sides_count = 12
 
 
     def __init__(self, color, *sides):
-        side = sides[0] if len(sides) == 1 else 1
+        self.list_sides = list(sides)
+        side = sides[0] if len(self.list_sides) == 1 else 1
         super().__init__(color, *[side] * self.sides_count)
 
     def get_volume(self):
@@ -77,8 +84,7 @@ class Cube(Figure):
 
 
 
-    '''Переопределить __sides сделав список из 12 одинаковы сторон (передаётся 1 сторона)
-Метод get_volume, возвращает объём куба.'''
+    '''Переопределить __sides сделав список из 12 одинаковы сторон (передаётся 1 сторона)'''
 
 
 circle1 = Circle((200, 200, 100), 10) # (Цвет, стороны)
