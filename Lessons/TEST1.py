@@ -45,12 +45,13 @@ class Circle(Figure):
 
 
 class Triangle(Figure):
-    sides_count = 3
+
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
         a, b, c = self.get_sides()
         s = sum(self.get_sides()) / 2
+        self. sides_count = 3
         self.__height = (2 / a) * math.sqrt(s * (s - a) * (s - b) * (s - c))
 
     def get_square(self):

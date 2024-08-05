@@ -42,6 +42,8 @@ class Circle(Figure):
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
+        R, G, B = self.set_color()
+        sides= self.get_sides()
         self.sides_count = 1
         self.__radius = self.__sides/(2 * math.pi)
 
@@ -54,16 +56,9 @@ class Triangle(Figure):
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
+        a, b, c = self.get_sides()
         self.sides_count = 3
-        self.triangle_side_list = list(sides)
-        if len(self.triangle_side_list) == self.sides_count:
-            for i in range(self.triangle_side_list):
-                a = self.triangle_side_list[0]
-                b = self.triangle_side_list[1]
-                c = self.triangle_side_list[2]
-
-                p = (a + b + c) / 2
-                print (a, b, c, p)
+        p = (a + b + c) / 2
         self.__height = 2 * math.sqrt((p * (p-a)*(p-b)*(p-c))/a)
 
     def get_square(self):
