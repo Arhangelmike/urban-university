@@ -26,7 +26,7 @@ class Figure:
 
 
     def __is_valid_sides(self, *args):
-        return all(isinstance(args1, int) and args1 > 0 for args1 in args)
+        return len(args) == self.sides_count and all(isinstance(args1, int) and args1 > 0 for args1 in args)
 
 
     def set_sides(self, *new_sides):
@@ -38,14 +38,12 @@ class Figure:
         return sum(self.__sides) #  возвращать периметр фигуры.
 
 class Circle(Figure):
+    sides_count = 1
 
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
-        R, G, B = self.set_color()
-        sides= self.get_sides()
-        self.sides_count = 1
-        self.__radius = self.__sides/(2 * math.pi)
+        self.__radius = self._Figure__sides[0] / (2 * math.pi)
 
 
     def get_square(self):
@@ -53,11 +51,11 @@ class Circle(Figure):
 
 
 class Triangle(Figure):
-
+    sides_count = 3
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
         a, b, c = self.get_sides()
-        self.sides_count = 3
+
         p = (a + b + c) / 2
         self.__height = 2 * math.sqrt((p * (p-a)*(p-b)*(p-c))/a)
 
