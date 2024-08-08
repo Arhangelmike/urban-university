@@ -73,6 +73,7 @@ class Cube(Figure):
         side = sides[0] if len(sides) == 1 else 1
         super().__init__(color, *[side] * self.sides_count)
 
+
     def get_volume(self):
         return self.get_sides()[0] ** 3
 
