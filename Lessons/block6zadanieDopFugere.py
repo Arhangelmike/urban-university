@@ -4,7 +4,7 @@ class Figure:
 
     def __init__(self, color=(0, 0, 0), *sides):
         self.__color = list(color)
-        self.__sides = list(sides)
+        self.__sides = list(sides) if self.__is_valid_sides(*sides) else [1] * self.sides_count
         self.filled = False
 
 
@@ -12,21 +12,22 @@ class Figure:
         return self.__color
 
 
+    def get_sides(self):
+        return self.__sides
+#for i in range(12):
+#   my_list.append(1)
+
     def __is_valid_color(self, R, G, B):
         return all(isinstance(colors1, int) and 0 <= colors1 <= 255 for colors1 in (R, G, B))
+
+
+    def __is_valid_sides(self, *args):
+        return len(args) == self.sides_count and all(isinstance(args1, int) and args1 > 0 for args1 in args)
 
 
     def set_color(self, R, G, B):
         if self.__is_valid_color(R, G, B):
             self.__color = (R, G, B)
-
-
-    def get_sides(self):
-        return self.__sides
-
-
-    def __is_valid_sides(self, *args):
-        return len(args) == self.sides_count and all(isinstance(args1, int) and args1 > 0 for args1 in args)
 
 
     def set_sides(self, *new_sides):
@@ -37,13 +38,15 @@ class Figure:
     def __len__(self):
         return sum(self.__sides) #  возвращать периметр фигуры.
 
+
 class Circle(Figure):
     sides_count = 1
 
 
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
-        self.__radius = self._Figure__sides[0] / (2 * math.pi)
+        sideL = sides[0]
+        self.__radius = sideL / (2 * math.pi)
 
 
     def get_square(self):
@@ -55,7 +58,6 @@ class Triangle(Figure):
     def __init__(self, color, *sides):
         super().__init__(color, *sides)
         a, b, c = self.get_sides()
-
         p = (a + b + c) / 2
         self.__height = 2 * math.sqrt((p * (p-a)*(p-b)*(p-c))/a)
 
@@ -68,8 +70,7 @@ class Cube(Figure):
 
 
     def __init__(self, color, *sides):
-        self.list_sides = list(sides)
-        side = sides[0] if len(self.list_sides) == 1 else 1
+        side = sides[0] if len(sides) == 1 else 1
         super().__init__(color, *[side] * self.sides_count)
 
     def get_volume(self):
