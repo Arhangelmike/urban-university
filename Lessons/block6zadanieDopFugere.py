@@ -14,8 +14,7 @@ class Figure:
 
     def get_sides(self):
         return self.__sides
-#for i in range(12):
-#   my_list.append(1)
+
 
     def __is_valid_color(self, R, G, B):
         return all(isinstance(colors1, int) and 0 <= colors1 <= 255 for colors1 in (R, G, B))
