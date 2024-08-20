@@ -16,6 +16,6 @@ info = [
     ]
 
 
-pos_and_strings = custom_write('C:/Users/user/Pictures/1/file_name1.txt', info)
-for elem in pos_and_strings.items():
+strings_positions = custom_write('C:/Users/user/Pictures/1/file_name1.txt', info)
+for elem in strings_positions.items():
     print(elem)
