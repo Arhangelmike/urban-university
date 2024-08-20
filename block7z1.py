@@ -10,36 +10,29 @@ class Product:
 
 
 class Shop:
-    __file_name = '000003.txt'
+    __file_name = '000004.txt'
 
-    def createfile(self):
-        file1 = open(self.__file_name, 'w+')
-        file1.write('')
-        file1.close()
-
-    def get_product(self):
-        self.createfile()
+    def get_products(self):
         file = open(self.__file_name, 'r+')
         prod_str = file.read()
         file.close()
         return prod_str
 
-    def add(self, *products):
-        file_get = self.get_product()
-        for i in products:
-            if self.get_product().find(f'{i.name},') == -1:
-                file = open(self.__file_name, 'a')
+    def add(self, *producty):
+        # file_get = self.get_products()
+        for i in producty:
+            if self.get_products().find(f'{i.name}, {i.weight}') == -1:
+                file = open(self.__file_name, 'a+')
                 file.write(f'{i}\n')
                 file.close()
             else:
-                print(f'Продукт {i.name} уже есть в магазине')
+                print(f'Продукт {i.name} {i.weight} уже есть в магазине')
 
 
-shop1 = Shop()
-product4 = Product('Apple1', 0.4, 'Fruits')
-product2 = Product('Apple', 0.3, 'Fruits')
-product1 = Product('Cucumber', 5.3, 'Vegetables')
-product3 = Product('Peach', 2, 'Fruits')
-print(product2)
-shop1.add(product1, product2, product3, product4, product2)
-print(f'\n{shop1.get_product()}')
+s1 = Shop()
+p1 = Product('Potato', 50.5, 'Vegetables')
+p2 = Product('Spaghetti', 3.4, 'Groceries')
+p3 = Product('Potato', 5.5, 'Vegetables')
+print(p2)
+s1.add(p1, p2, p3)
+print(s1.get_products())
