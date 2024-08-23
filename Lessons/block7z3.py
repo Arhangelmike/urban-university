@@ -22,21 +22,14 @@ class WordsFinder:
         find_word_pos = {}
         for name, words in self.get_all_words().items():
             if word in words:
-                find_word_pos[name] = words.find(word) + 1
+                find_word_pos[name] = words.index(word.lower()) + 1
         return find_word_pos
 
-
     def count(self, word):
-        word = word.lower()
         find_word_quant = {}
         for name, words in self.get_all_words().items():
-            counter = 0
-            for i in words:
-                if i == words.find(word):
-                    counter = counter + 1
-            find_word_quant [name] = counter
-
-        return find_word_quant
+            find_word_quant[name] = words.count(word.lower())
+            return find_word_quant
 
 finder2 = WordsFinder('test_file.txt')
 print(finder2.get_all_words()) # Все слова
