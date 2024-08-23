@@ -26,10 +26,16 @@ class WordsFinder:
         return find_word_pos
 
     def count(self, word):
+        word = word.lower()
         find_word_quant = {}
         for name, words in self.get_all_words().items():
-            find_word_quant[name] = words.count(word.lower())
-            return find_word_quant
+            count = 0
+            for i in words:
+                if word == i:
+                    count += 1
+            find_word_quant[name] = count
+        return find_word_quant
+
 
 finder2 = WordsFinder('test_file.txt')
 print(finder2.get_all_words()) # Все слова
