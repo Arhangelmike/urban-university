@@ -8,7 +8,7 @@ result = list(map(lambda x, y: x == y, first, second))
 print(result)
 
 
-# Замыкание:
+# вторая задача
 def get_advanced_writer(file_name):
     def write_everything(*data_set):
         with open(file_name, "w", encoding='UTF-8') as file:
@@ -22,7 +22,7 @@ write = get_advanced_writer('test_file.txt')
 write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
 
 
-# Метод __call__:
+# задача про  __call__:
 
 class MysticBall:
     def __init__(self, *words: str):
