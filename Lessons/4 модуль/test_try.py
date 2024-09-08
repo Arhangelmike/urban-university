@@ -11,3 +11,4 @@
 # gen = (int(i) ** 2 if int(i) % 2 == 0 else 0 for i in range(10000000))    #  генератор
 # print(list1.__sizeof__())
 # print(gen.__sizeof__())
+
