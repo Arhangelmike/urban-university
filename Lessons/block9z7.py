@@ -1,20 +1,16 @@
-from math import sqrt
-
 def is_prime(sum_three):
-    prime = True
-    n = sum_three
-    i = 2
-    while i <= sqrt(n):
-        if n % i == 0:
-            prime = False
-            break
-        i += 1
+    def wrapper(a, b, c):
+        res = sum_three(a, b, c)
+        for i in range(2, int(res ** 0.5 + 1)):
+            if res % i == 0:
+                print("Составное")
+                break
+        else:
+            print('Простое')
+        return res
 
-    if prime:
-        print('Простое число')
-    else:
-        print('Составное число')
-    return sum_three
+    return wrapper
+
 
 @is_prime
 def sum_three(a, b, c):
