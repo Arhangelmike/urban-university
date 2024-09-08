@@ -12,3 +12,17 @@
 # print(list1.__sizeof__())
 # print(gen.__sizeof__())
 
+def decorator(func):
+    def wrapper():
+        print('функция-оболочка')
+        func()
+    return wrapper
+
+def basic():
+    print('основная функция')
+
+wrapped = decorator(basic)
+print('старт программы')
+basic()
+wrapped()
+print('конец программы')
