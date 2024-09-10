@@ -22,15 +22,15 @@ write_words(100, 'example4.txt')
 
 start_time_thread = datetime.now()
 
-# thread1 = Thread(target=write_words, args=(10, 'example5.txt'))
-# thread2 = Thread(target=write_words, args=(30, 'example6.txt'))
-# thread3 = Thread(target=write_words, args=(200, 'example7.txt'))
-# thread4 = Thread(target=write_words, args=(100, 'example8.txt'))
+thread1 = threading.Thread(target=write_words, args=(10, 'example5.txt'))
+thread2 = threading.Thread(target=write_words, args=(30, 'example6.txt'))
+thread3 = threading.Thread(target=write_words, args=(200, 'example7.txt'))
+thread4 = threading.Thread(target=write_words, args=(100, 'example8.txt'))
 
-thread1 = threading.Timer(0.1, write_words, args=(10, 'example5.txt'))
-thread2 = threading.Timer(0.1, write_words, args=(30, 'example6.txt'))
-thread3 = threading.Timer(0.1, write_words, args=(200, 'example7.txt'))
-thread4 = threading.Timer(0.1, write_words, args=(100, 'example8.txt'))
+# thread1 = threading.Timer(0.1, write_words, args=(10, 'example5.txt'))
+# thread2 = threading.Timer(0.1, write_words, args=(30, 'example6.txt'))
+# thread3 = threading.Timer(0.1, write_words, args=(200, 'example7.txt'))
+# thread4 = threading.Timer(0.1, write_words, args=(100, 'example8.txt'))
 
 
 thread1.start()
