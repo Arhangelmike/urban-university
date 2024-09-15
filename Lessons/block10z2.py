@@ -17,8 +17,6 @@ class Knight(threading.Thread):
             counter += 1
             known_enemy = known_enemy - self.power
             print(f'{self.name} сражается {counter} дней..., осталось {known_enemy} врагов.')
-            #threading.Timer(1, Knight.printit).start()
-            #Knight.printit()
         print(f'{self.name} одержал победу спустя {counter} дней(дня)!')
         counter = 0
         known_enemy = 100
