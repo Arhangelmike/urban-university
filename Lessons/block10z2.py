@@ -1,6 +1,7 @@
 from threading import Thread
 import time
 
+
 class Knight(Thread):
     def __init__(self, name, power):
         super().__init__()
@@ -9,8 +10,6 @@ class Knight(Thread):
         self.counter = 0
         self.known_enemy = 100
         print(f'{name}, на нас напали!')
-
-
 
     def run(self):
         while self.known_enemy > 0:
