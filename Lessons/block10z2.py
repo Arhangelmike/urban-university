@@ -2,8 +2,6 @@ from threading import Thread
 import time
 
 
-statist = []
-
 
 class Knight(Thread):
     def __init__(self, name, power):
@@ -15,14 +13,14 @@ class Knight(Thread):
         print(f'{name}, на нас напали!')
 
     def run(self):
-        global statist
+        
         while self.known_enemy > 0:
             self.counter += 1
             self.known_enemy = self.known_enemy - self.power
             time.sleep(1)
             print(f'{self.name} сражается {self.counter} дней..., осталось {self.known_enemy} врагов.')
         print(f'{self.name} одержал победу спустя {self.counter} дней(дня)!')
-        return statist
+        
 
 
 first_knight = Knight('Sir Lancelot', 10)
