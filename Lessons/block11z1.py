@@ -11,8 +11,8 @@ def read_file(name):
             else:
                 all_data.append(line)
 # ФАЙЛЫ из списка те что у вас в той же папке что и сама программа тестовый ввод данных
-filenames = ["homework1 — копия.txt", "example7.txt", "test_file.txt", "main2.txt"]
-#  filenames = [f'./file {number}.txt' for number in range(1, 5)]
+# filenames = ["homework1 — копия.txt", "example7.txt", "test_file.txt", "main2.txt"]
+filenames = [f'./file {number}.txt' for number in range(1, 5)]
 
 
 
