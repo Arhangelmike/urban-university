@@ -15,16 +15,22 @@ filenames = ["homework1 — копия.txt", "example7.txt", "test_file.txt", "m
 #  filenames = [f'./file {number}.txt' for number in range(1, 5)]
 
 
-# линейный
-start_t = datetime.datetime.now()
-for name in filenames:
-    read_file(name)
-end_t = datetime.datetime.now()
-str1 = 'линейный метод расчета'
-delta = end_t - start_t
-print(f'{str(delta)} - {str1}')
-print('s')
+
+
+
+
 if __name__ == "__main__":
+
+    # линейный
+    start_t = datetime.datetime.now()
+    for name in filenames:
+        read_file(name)
+    end_t = datetime.datetime.now()
+    str1 = 'линейный метод расчета'
+    delta = end_t - start_t
+    print(f'{str(delta)} - {str1}')
+
+
     start_t = datetime.datetime.now()
     with Pool() as pool:
         contents = pool.map(read_file, filenames)
