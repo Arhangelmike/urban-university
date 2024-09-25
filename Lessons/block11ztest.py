@@ -1,6 +1,6 @@
 import socket
 from datetime import datetime
-import sys
+# три метода: gethostbyname \\ socket() \\  .create_connection()
 start = datetime.now()
 # словарь из пар: порт и название порта
 ports = {
@@ -14,7 +14,8 @@ ports = {
     3268: "LDAP", 3306: "MySQL", 3389: "RDP",
     5432: "PostgreSQL", 5900: "VNC", 8080: "Tomcat", 10000: "Webmin" }
 # ip адрес
-host_name = '45.33.32.156'
+host_name = input("IP адресс имеет вид ххх.ххх.ххх.ххх для примера (45.33.32.156) введи свой адрес:")
+
 ip = socket.gethostbyname(host_name)
 # распечатаем имя сайта по его ip адресу
 hostname1 = socket.gethostbyaddr(ip)[0]
@@ -37,6 +38,6 @@ for port in ports:
         cont.close()
 ends = datetime.now()
 print("<Time:{}>".format(ends - start))
-input("Press Enter to the exit....")
+
 
 
