@@ -30,7 +30,8 @@ r = requests.post('https://httpbin.org/post', data={'key': 'value'})
 # check status code for response received
 # success code - 200
 print(r)
-
+r2 = requests.head('https://httpbin.org/', data ={'key':'value'})
+print(r2.headers)
 # в цикле обойдем все порты из списка и проверим возможность подключения к ним.
 # Если порт закрыт, будет вызываться исключение, которое мы перехватим, и программа не вылетит.
 for port in ports:
