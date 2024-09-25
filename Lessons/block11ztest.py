@@ -1,7 +1,8 @@
-import socket
+import socket, requests
 from datetime import datetime
 # три метода: gethostbyname \\ socket() \\  .create_connection()
 start = datetime.now()
+
 # словарь из пар: порт и название порта
 ports = {
     20: "FTP-DATA", 21: "FTP", 22: "SSH", 23: "Telnet",
@@ -20,7 +21,15 @@ ip = socket.gethostbyname(host_name)
 # распечатаем имя сайта по его ip адресу
 hostname1 = socket.gethostbyaddr(ip)[0]
 print(hostname1)
+# test request from site 'https://api.github.com/events'
+response = requests.get('https://api.github.com/events')
+# возвращает кучу всего в виде списка можно вывести отдельный элемент
+print(response.content[2])
+r = requests.post('https://httpbin.org/post', data={'key': 'value'})
 
+# check status code for response received
+# success code - 200
+print(r)
 
 # в цикле обойдем все порты из списка и проверим возможность подключения к ним.
 # Если порт закрыт, будет вызываться исключение, которое мы перехватим, и программа не вылетит.
