@@ -74,3 +74,5 @@
 #     numbers = [5, 10, 20]
 #     pool = Pool(processes=3)
 #     print(pool.map(doubler, numbers))
+
+import requests
