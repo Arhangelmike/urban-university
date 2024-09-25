@@ -1,78 +1,42 @@
-# from multiprocessing import Pool
-#
-# # Функция, которая будет применена к каждому элементу
-# def square(n):
-#     return n * n
-#
-# if __name__ == '__main__':
-#     # Создание пула из 4 процессов
-#     with Pool(processes=4) as pool:
-#         # Входной список значений
-#         values = [1, 2, 3, 4, 5]
-#         # Применение функции square к каждому элементу в списке параллельно
-#         results = pool.map(square, values)
-#         print(results)
+import socket
+from datetime import datetime
+import sys
+start = datetime.now()
+# словарь из пар: порт и название порта
+ports = {
+    20: "FTP-DATA", 21: "FTP", 22: "SSH", 23: "Telnet",
+    25: "SMTP", 43: "WHOIS", 53: "DNS", 80: "http",
+    115: "SFTP", 123: "NTP", 143: "IMAP", 161: "SNMP",
+    179: "BGP", 443: "HTTPS", 445: "MICROSOFT-DS",
+    514: "SYSLOG", 515: "PRINTER", 993: "IMAPS",
+    995: "POP3S", 1080: "SOCKS", 1194: "OpenVPN",
+    1433: "SQL Server", 1723: "PPTP", 3128: "HTTP",
+    3268: "LDAP", 3306: "MySQL", 3389: "RDP",
+    5432: "PostgreSQL", 5900: "VNC", 8080: "Tomcat", 10000: "Webmin" }
+# ip адрес
+host_name = '45.33.32.156'
+ip = socket.gethostbyname(host_name)
+# распечатаем имя сайта по его ip адресу
+hostname1 = socket.gethostbyaddr(ip)[0]
+print(hostname1)
 
 
-# import multiprocessing
-# from multiprocessing import Pool
-#
-# def read_file(filename):
-#     with open(filename, 'r', encoding="utf-8") as file:
-#         content = file.read()
-#     return content
-#     # You can perform any file reading operations here
-#
-# if __name__ == "__main__":
-#     # ФАЙЛЫ из списка те что у вас в той же папке что и сама программа
-#     filenames = ["homework1 — копия.txt", "example7.txt", "test_file.txt", "main2.txt"]
-#
-#     with Pool() as pool:
-#         contents = pool.map(read_file, filenames)
-#
-#     for content in contents:
-#         print(content)
-#
-#
-# import logging
-# import multiprocessing
-# from multiprocessing import Process, Lock
-#
-#
-# def printer(item, lock):
-#     """
-#     Выводим то что передали
-#     """
-#     lock.acquire()
-#     try:
-#         print(item)
-#     finally:
-#         lock.release()
-#
-#
-# if __name__ == '__main__':
-#     lock = Lock()
-#     items = ['tango', 'foxtrot', 10]
-#     multiprocessing.log_to_stderr()
-#
-#     logger = multiprocessing.get_logger()
-#     logger.setLevel(logging.INFO)
-#
-#     for item in items:
-#         p = Process(target=printer, args=(item, lock))
-#         p.start()
+# в цикле обойдем все порты из списка и проверим возможность подключения к ним.
+# Если порт закрыт, будет вызываться исключение, которое мы перехватим, и программа не вылетит.
+for port in ports:
+    cont = socket.socket()
+    cont.settimeout(1)
+    try:
+        cont.connect((ip, port))
+        s1 = socket.create_connection((ip, port), timeout=5)
+        print(s1)
+    except socket.error as error1:
+        print(error1)
+    else:
+        print(f"{socket.gethostbyname(ip)}:{str(port)} is open/{ports[port]}")
+        cont.close()
+ends = datetime.now()
+print("<Time:{}>".format(ends - start))
+input("Press Enter to the exit....")
 
-#
-# from multiprocessing import Pool
-#
-#
-# def doubler(number):
-#     return number * 2
-#
-#
-# if __name__ == '__main__':
-#     numbers = [5, 10, 20]
-#     pool = Pool(processes=3)
-#     print(pool.map(doubler, numbers))
 
-import requests
