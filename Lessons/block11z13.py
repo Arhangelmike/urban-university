@@ -24,3 +24,5 @@ print(list_info)
 
 for attribute in dir(callable):
     print(attribute, getattr(callable, attribute))
+
+print('callable:', str(callable.__subclasshook__))
