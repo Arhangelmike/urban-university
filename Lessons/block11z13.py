@@ -21,4 +21,6 @@ print(string_info)
 list_info = introspection(['sting', 4, 7.5])
 print(list_info)
 
-print(dir(callable))
+
+for attribute in dir(callable):
+    print(attribute, getattr(callable, attribute))
