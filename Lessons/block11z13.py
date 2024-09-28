@@ -10,7 +10,6 @@ def introspection(obj):
     module = obj.__class__.__module__
     # module = sys.argv[0]
     # print(f'{module}')
-
     info = {'type': obj_type, 'attributes': attributes, 'methods': methods, 'module': module}
     return info
 
