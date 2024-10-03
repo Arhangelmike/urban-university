@@ -3,11 +3,6 @@ from runner_and_tournament import Runner
 import unittest
 
 class RunnerTest(TestCase):
-    # def __init__(self, name, speed=5):
-    #     self.name = name
-    #     self.distance = 0
-    #     self.speed = speed
-
 
     def test_walk(self):
         walk_test = Runner('Walker_one')
