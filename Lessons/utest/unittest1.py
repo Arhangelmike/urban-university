@@ -2,6 +2,7 @@ from unittest import TestCase
 from runner_and_tournament import Runner
 import unittest
 
+
 class RunnerTest(TestCase):
 
     def test_walk(self):
@@ -10,13 +11,11 @@ class RunnerTest(TestCase):
             walk_test.walk()
         self.assertEqual(walk_test.distance, 50)
 
-
     def test_run(self):
         run_test = Runner('Runner_two')
         for i in range(10):
             run_test.run()
         self.assertEqual(run_test.distance, 100)
-
 
     def test_challenge(self):
         ch_test1 = Runner('challenger_three')
