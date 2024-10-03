@@ -1,60 +1,35 @@
 from unittest import TestCase
-import Runner
+from runner_and_tournament import Runner
+import unittest
 
 class RunnerTest(TestCase):
-
-    def test_walk(self):
-        walk_test1 = Runner.walk
-
-        for wt in range(10):
-            global wt
-            wt = walk_test1
-
-        self.assertEqual(wt.distance, 50)
-    def test_run(self):
-        pass
-    def test_challenge(self):
-        pass
-
-
-import unittest
-from unittest import TestCase
-
-
-class Runner:
-    def __init__(self, name):
+    def __init__(self, name, speed=5):
         self.name = name
         self.distance = 0
-
-    def run(self):
-        self.distance += 10
-
-    def walk(self):
-        self.distance += 5
-
-    def __str__(self):
-        return self.name
+        self.speed = speed
 
 
-class RunnerTest(TestCase):
     def test_walk(self):
-        run_1 = Runner('Tesla')
+        walk_test = Runner('Walker_one')
         for i in range(10):
-            run_1.walk()
-        self.assertEqual(run_1.distance, 50)
+            walk_test.walk()
+        self.assertEqual(walk_test.distance, 50)
+
 
     def test_run(self):
-        run_2 = Runner('Lada')
+        run_test = Runner('Runner_two')
         for i in range(10):
-            run_2.run()
-        self.assertEqual(run_2.distance, 100)
+            run_test.run()
+        self.assertEqual(run_test.distance, 100)
+
 
     def test_challenge(self):
-        run_3 = Runner('Dodge')
-        run_4 = Runner('Porshe')
+        ch_test1 = Runner('challenger_three')
+        ch_test2 = Runner('challenger_four')
         for i in range(10):
-            run_3.run()
-            run_4.walk()
-        self.assertNotEqual(run_3.distance, run_4.distance)
+            ch_test1.walk()
+            ch_test2.run()
+        self.assertNotEqual(ch_test1.distance, ch_test2.distance)
 
-    is_frozen = False
+
+
