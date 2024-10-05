@@ -22,9 +22,11 @@ class TournamentTest(unittest.TestCase):
 '''tearDownClass - метод выполняеться в конце, печать словарая  all_results по очереди в столбец'''
 
     def usein_vs_nick(self):
-        Tournament = runner_and_tournament.Tournament(90, self.usein, self.nick)
-        result = Tournament.start()
-        # self.all_results[len(self.all_results) + 1] = result
-        # self.assertTrue(result[max(result.keys())] == "Ник")
-        TournamentTest.all_results.append(result)
-        self.assertTrue(result[2] == 'Ник')
+
+        tournament = runner_and_tournament.Tournament(90, self.usein, self.nick)
+        result = tournament.start()
+        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
+        self.assertTrue(result[max(result.keys())] == "Ник")
+
+if __name__ == "__main__":
+    unittest.main()
