@@ -19,8 +19,12 @@ class TournamentTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        # for key, value in TournamentTest.all_results.items():
+        #     print(key, '-:-', value)
         for key, value in TournamentTest.all_results.items():
-            print(key, '-:-', value)
+            # Преобразуем объект Runner в строку, вызывая метод str()
+            result_str = {place: str(runner) for place, runner in value.items()}
+            print(key, '-:-', result_str)
 
 
     def test_usein_vs_nick(self):
@@ -28,8 +32,7 @@ class TournamentTest(unittest.TestCase):
         b = self.nick
         tournament = runner_and_tournament.Tournament(90, a, b)
         result = tournament.start()
-        # print(result)
-        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
+        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result.values()
         self.assertTrue(result[max(result.keys())] == "Ник")
 
 if __name__ == "__main__":
