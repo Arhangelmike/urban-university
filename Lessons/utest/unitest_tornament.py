@@ -17,12 +17,14 @@ class TournamentTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        for result in cls.all_results.values():
-            print(result)
-'''tearDownClass - метод, где выводятся all_results по очереди в столбец.выполняеться в конце'''
+        for key, value in cls.all_results.values():
+            print(key, ':', value)
+'''tearDownClass - метод выполняеться в конце, печать словарая  all_results по очереди в столбец'''
 
     def usein_vs_nick(self):
         Tournament = runner_and_tournament.Tournament(90, self.usein, self.nick)
         result = Tournament.start()
-        self.all_results[len(self.all_results) + 1] = result
-        self.assertTrue(result[max(result.keys())] == "Ник")
+        # self.all_results[len(self.all_results) + 1] = result
+        # self.assertTrue(result[max(result.keys())] == "Ник")
+        TournamentTest.all_results.append(result)
+        self.assertTrue(result[2] == 'Ник')
