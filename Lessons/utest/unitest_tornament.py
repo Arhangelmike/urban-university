@@ -13,13 +13,13 @@ class TournamentTest(unittest.TestCase):
         self.usein = runner_and_tournament.Runner("Усэйн", 10)
         self.andrey = runner_and_tournament.Runner("Андрей", 9)
         self.nick = runner_and_tournament.Runner("Ник", 3)
-'''setUp - метод, где создаются 3 объекта -  пары значений имени и скорости'''
+
 
     @classmethod
     def tearDownClass(cls):
         for key, value in cls.all_results.values():
             print(key, ':', value)
-'''tearDownClass - метод выполняеться в конце, печать словарая  all_results по очереди в столбец'''
+
 
     def usein_vs_nick(self):
 
