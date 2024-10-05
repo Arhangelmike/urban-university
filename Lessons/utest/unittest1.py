@@ -1,13 +1,11 @@
 import runner_and_tournament
 import unittest
-from collections import OrderedDict
+
 
 class TournamentTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        '''setUpClass - метод, где создаётся атрибут класса all_results. Это словарь
-         в который будут сохраняться результаты всех тестов.'''
         cls.all_results = {}
 
     def setUp(self):
@@ -17,13 +15,10 @@ class TournamentTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        for key, value in TournamentTest.all_results.items():
-            # Преобразуем объект Runner в строку, вызывая метод str()
+        res = dict(reversed(list(TournamentTest.all_results.items())))
+        for key, value in res.items():
             result_str = {place: str(runner) for place, runner in value.items()}
             print(result_str)
-            # res = dict(reversed(list(result_str.items())))
-            # print(res)
-
 
     def test_usein_vs_nick(self):
         tournament = runner_and_tournament.Tournament(90, self.usein, self.nick)
@@ -46,7 +41,3 @@ class TournamentTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-# result_str = {}
-# for place, runner in value.items():
-#     result_str[place] = str(runner)
