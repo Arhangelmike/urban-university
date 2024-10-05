@@ -1,42 +1,28 @@
-import runner_and_tournament
+from unittest import TestCase
+from runner_and_tournament import Runner
 import unittest
 
+class RunnerTest(TestCase):
 
-class TournamentTest(unittest.TestCase):
+    def test_walk(self):
+        walk_test = Runner('Walker_one')
+        for i in range(10):
+            walk_test.walk()
+        self.assertEqual(walk_test.distance, 50)
 
-    @classmethod
-    def setUpClass(cls):
-        cls.all_results = {}
+    def test_run(self):
+        run_test = Runner('Runner_two')
+        for i in range(10):
+            run_test.run()
+        self.assertEqual(run_test.distance, 100)
 
-    def setUp(self):
-        self.usein = runner_and_tournament.Runner("Усэйн", 10)
-        self.andrey = runner_and_tournament.Runner("Андрей", 9)
-        self.nick = runner_and_tournament.Runner("Ник", 3)
-
-    @classmethod
-    def tearDownClass(cls):
-        res = dict(reversed(list(TournamentTest.all_results.items())))
-        for key, value in res.items():
-            result_str = {place: str(runner) for place, runner in value.items()}
-            print(result_str)
-
-    def test_usein_vs_nick(self):
-        tournament = runner_and_tournament.Tournament(90, self.usein, self.nick)
-        result = tournament.start()
-        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
-        self.assertTrue(result[max(result.keys())] == "Ник")
-
-    def test_andrey_vs_nick(self):
-        tournament = runner_and_tournament.Tournament(90, self.andrey, self.nick)
-        result = tournament.start()
-        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
-        self.assertTrue(result[max(result.keys())] == "Ник")
-
-    def test_all_vs_all(self):
-        tournament = runner_and_tournament.Tournament(90, self.usein, self.andrey, self.nick)
-        result = tournament.start()
-        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
-        self.assertTrue(result[max(result.keys())] == "Ник")
+    def test_challenge(self):
+        ch_test1 = Runner('challenger_three')
+        ch_test2 = Runner('challenger_four')
+        for i in range(10):
+            ch_test1.walk()
+            ch_test2.run()
+        self.assertNotEqual(ch_test1.distance, ch_test2.distance)
 
 
 if __name__ == "__main__":
