@@ -23,7 +23,7 @@ class TournamentTest(unittest.TestCase):
             # Преобразуем объект Runner в строку, вызывая метод str()
             result_str = {place: str(runner) for place, runner in value.items()}
             print(result_str)
-            print(key, '-:-', result_str)
+
 
 
     def test_usein_vs_nick(self):
@@ -31,7 +31,7 @@ class TournamentTest(unittest.TestCase):
         b = self.nick
         tournament = runner_and_tournament.Tournament(90, a, b)
         result = tournament.start()
-        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result.values()
+        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
         self.assertTrue(result[max(result.keys())] == "Ник")
 
 if __name__ == "__main__":
