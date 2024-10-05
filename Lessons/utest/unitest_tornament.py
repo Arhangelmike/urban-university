@@ -19,11 +19,10 @@ class TournamentTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # for key, value in TournamentTest.all_results.items():
-        #     print(key, '-:-', value)
         for key, value in TournamentTest.all_results.items():
             # Преобразуем объект Runner в строку, вызывая метод str()
             result_str = {place: str(runner) for place, runner in value.items()}
+            print(result_str)
             print(key, '-:-', result_str)
 
 
