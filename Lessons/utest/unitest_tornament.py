@@ -17,12 +17,11 @@ class TournamentTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        for key, value in cls.all_results.values():
+        for key, value in cls.all_results.items():
             print(key, ':', value)
 
 
-    def usein_vs_nick(self):
-
+    def test_usein_vs_nick(self):
         tournament = runner_and_tournament.Tournament(90, self.usein, self.nick)
         result = tournament.start()
         TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
