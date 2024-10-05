@@ -21,7 +21,7 @@ class TournamentTest(unittest.TestCase):
             print(result)
 '''tearDownClass - метод, где выводятся all_results по очереди в столбец.выполняеться в конце'''
 
-    def tournament_usein_vs_nick(self):
+    def usein_vs_nick(self):
         Tournament = runner_and_tournament.Tournament(90, self.usein, self.nick)
         result = Tournament.start()
         self.all_results[len(self.all_results) + 1] = result
