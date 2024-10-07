@@ -27,6 +27,9 @@ class RunnerTest(unittest.TestCase):
 
 
 
+if __name__ == "__main__":
+    unittest.main()
+
 
 logging.basicConfig(level=logging.INFO, filename='mylog.log', filemode='w', encoding='utf-8',
     format="%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s")

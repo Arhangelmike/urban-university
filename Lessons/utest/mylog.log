@@ -1,0 +1,24 @@
+2024-10-08 00:57:27,580 - logtest - INFO - test_run: 20 - "test_run" выполнен успешно
+2024-10-08 00:57:27,585 - logtest - WARNING - test_run: 26 - Неверный тип данных для объекта Runner
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\pythonProject1\Lessons\utest\logtest.py", line 24, in test_run
+    self.assertEqual(run_test.distance, 100)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2024.1.1\plugins\python-ce\helpers\pycharm\teamcity\diff_tools.py", line 33, in _patched_equals
+    old(self, first, second, msg)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\unittest\case.py", line 885, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\unittest\case.py", line 878, in _baseAssertEqual
+    raise self.failureException(msg)
+AssertionError: 0 != 100
+2024-10-08 00:57:27,590 - logtest - INFO - test_walk: 9 - "test_walk" выполнен успешно
+2024-10-08 00:57:27,591 - logtest - WARNING - test_walk: 15 - Неверная скорость для Runner
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\pythonProject1\Lessons\utest\logtest.py", line 13, in test_walk
+    self.assertEqual(walk_test.distance, 50)
+  File "C:\Program Files\JetBrains\PyCharm Community Edition 2024.1.1\plugins\python-ce\helpers\pycharm\teamcity\diff_tools.py", line 33, in _patched_equals
+    old(self, first, second, msg)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\unittest\case.py", line 885, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\unittest\case.py", line 878, in _baseAssertEqual
+    raise self.failureException(msg)
+AssertionError: 0 != 50
