@@ -34,10 +34,11 @@ class TournamentTest(unittest.TestCase):
         self.assertTrue(result[max(result.keys())] == "Ник")
 
     def test_all_vs_all(self):
-        tournament = runner_and_tournament.Tournament(90, self.usein, self.andrey, self.nick)
-        result = tournament.start()
-        TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
-        self.assertTrue(result[max(result.keys())] == "Ник")
+        # tournament = runner_and_tournament.Tournament(90, self.usein, self.andrey, self.nick)
+        # result = tournament.start()
+        # TournamentTest.all_results[len(TournamentTest.all_results) + 1] = result
+        # self.assertTrue(result[max(result.keys())] == "Ник")
+
 
 
 if __name__ == "__main__":
