@@ -13,15 +13,16 @@ async def start_strongman(name, power):
         delta_time = end_time_1 - start_time_1
         t1 = i*downlow # изменение коэфициэнта усталости
         downlow += t1/power # чем больше усталость тем долше поднимаем
-        print(f"Время выполнения: {delta_time} секунд")
+        # print(f"Время выполнения: {delta_time} секунд") # просто интересно сколько времени
+
 
 async def start_tournament():
-
     task_1 = asyncio.create_task(start_strongman('Pasha', 3))
     task_2 = asyncio.create_task(start_strongman('Dasha', 5))
     task_3 = asyncio.create_task(start_strongman('Yasha', 9))
     await task_1
     await task_2
     await task_3
+
 
 asyncio.run(start_tournament())
