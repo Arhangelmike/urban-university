@@ -3,7 +3,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 
-api = "7774312557:AAFXxYlW-qQu-Kz05nU4_AQ4-vhaAc6LE9I"
+api = "сюда вставить токе"
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
