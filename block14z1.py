@@ -25,13 +25,17 @@ balance INTEGER NOT NULL
 #     cursor.execute(f"UPDATE User1 SET balance = {500} where  ID%2=1")
 
 
-for i in range(11):
-    if i == 1 or i == 4 or i == 7 or i == 10:
-        cursor.execute(f'DELETE FROM User1 WHERE ID = {i}')
+# for i in range(11):
+#     if i == 1 or i == 4 or i == 7 or i == 10:
+#         cursor.execute(f'DELETE FROM User1 WHERE ID = {i}')
 
 # or cursor.execute(''' DELETE FROM User1 WHERE id%3=1 ''')
 
 
+cursor.execute("SELECT username, email, age, balance FROM User1 WHERE age != 60")
+datasets = cursor.fetchall()
+for dataset in datasets:
+    print(f'Имя: {dataset[0]} | Почта: {dataset[1]} | Возраст: {dataset[2]} | Баланс: {dataset[3]}')
 
 connection.commit()
 connection.close()
