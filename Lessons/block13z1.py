@@ -4,17 +4,11 @@ from datetime import datetime
 
 async def start_strongman(name, power):
     print(f'Силач {name} начал соревнования.')
-    downlow = 10 / power # base coefficient
+    #downlow = 1 / power # base coefficient
     for i in range(1, 6):
-        start_time_1 = datetime.now()
-        await asyncio.sleep(downlow)
+        await asyncio.sleep(1/power)
         print(f'Силач {name} поднял {i} шар')
-        end_time_1 = datetime.now()
-        delta_time = end_time_1 - start_time_1
-        t1 = i*downlow # изменение коэфициэнта усталости
-        downlow += t1/power # чем больше усталость тем долше поднимаем
-        # print(f"Время выполнения: {delta_time} секунд") # просто интересно сколько времени
-
+    print(f'Силач {name} закончил соревнования.')
 
 async def start_tournament():
     task_1 = asyncio.create_task(start_strongman('Pasha', 3))
