@@ -17,8 +17,8 @@ balance INTEGER NOT NULL
 
 
 # Заполните её 10 записями:
-for i in range(10):
-    cursor.execute("INSERT INTO User1(username, email, age, balance) VALUES (?, ?, ?, ?)", (f"User{i}", f"example{i}@gmail.com", f"{random.randint(10,99)}", f"{1000}"))
+# for i in range(10):
+#     cursor.execute("INSERT INTO User1(username, email, age, balance) VALUES (?, ?, ?, ?)", (f"User{i}", f"example{i}@gmail.com", f"{random.randint(10,99)}", f"{1000}"))
 
 
 # Обновите balance у каждой 2ой записи начиная с 1ой на 500
