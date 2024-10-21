@@ -5,6 +5,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.utils import executor
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from crud_functions import get_all_products
 
 logging.basicConfig(level=logging.INFO)
 
@@ -94,22 +95,28 @@ async def send_calories(message, state):
 
 @dp.message_handler(text='Купить')
 async def get_buying_list(message):
-    number_1 = 1
-    await message.answer(f'Название: Продукт {number_1} | Описание: {number_1} | Цена: {number_1 * 100}')
-    with open('img/product 1.jpg', "rb") as img1:
-        await message.answer_photo(img1)
-    number_2 = 2
-    await message.answer(f'Название: Продукт {number_2} | Описание: {number_2} | Цена: {number_2 * 100}')
-    with open('img/product 2.jpg', "rb") as img2:
-        await message.answer_photo(img2)
-    number_3 = 3
-    await message.answer(f'Название: Продукт {number_3} | Описание: <{number_3} | Цена: {number_3 * 100}')
-    with open('img/product 3.jpg', "rb") as img3:
-        await message.answer_photo(img3)
-    number_4 = 5
-    await message.answer(f'Название: Продук {number_4} | Описание: {number_4} | Цена: {number_4 * 100}')
-    with open('img/product 4.jpg', "rb") as img4:
-        await message.answer_photo(img4)
+    # number_1 = 1
+    # await message.answer(f'Название: Продукт {number_1} | Описание: {number_1} | Цена: {number_1 * 100}')
+    # with open('img/product 1.jpg', "rb") as img1:
+    #     await message.answer_photo(img1)
+    # number_2 = 2
+    # await message.answer(f'Название: Продукт {number_2} | Описание: {number_2} | Цена: {number_2 * 100}')
+    # with open('img/product 2.jpg', "rb") as img2:
+    #     await message.answer_photo(img2)
+    # number_3 = 3
+    # await message.answer(f'Название: Продукт {number_3} | Описание: <{number_3} | Цена: {number_3 * 100}')
+    # with open('img/product 3.jpg', "rb") as img3:
+    #     await message.answer_photo(img3)
+    # number_4 = 5
+    # await message.answer(f'Название: Продук {number_4} | Описание: {number_4} | Цена: {number_4 * 100}')
+    # with open('img/product 4.jpg', "rb") as img4:
+    #     await message.answer_photo(img4)
+    # await message.answer("Выберите продукт для покупки:", reply_markup=kb_in2)
+
+    for index, product in enumerate(get_all_products()):
+        await message.answer(f"Название:{product[1]} | Описание:{product[2]} | Цена: {product[3]}")
+        with open(f'img/product {index + 1}.jpg', 'rb') as photo:
+            await message.answer_photo(photo)
     await message.answer("Выберите продукт для покупки:", reply_markup=kb_in2)
 
 
