@@ -7,11 +7,14 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from crud_functions import get_all_products
 
+
 logging.basicConfig(level=logging.INFO)
+
 
 api = '7774312557:AAFXxYlW-qQu-Kz05nU4_AQ4-vhaAc6LE9I'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
 
 kb1 = ReplyKeyboardMarkup(resize_keyboard=True)
 button_1 = KeyboardButton(text='Рассчитать')
@@ -21,11 +24,13 @@ kb1.add(button_1)
 kb1.add(button_2)
 kb1.add(button_3)
 
+
 kb_in1 = InlineKeyboardMarkup()
 button_3 = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
 button_4 = InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')
 kb_in1.add(button_3)
 kb_in1.add(button_4)
+
 
 kb_in2 = InlineKeyboardMarkup(
     inline_keyboard=[
@@ -40,9 +45,9 @@ kb_in2 = InlineKeyboardMarkup(
 
 
 class UserState(StatesGroup):
-    age = State()  #возраст
-    growth = State()  #рост
-    weight = State()  #вес
+    age = State()
+    growth = State()
+    weight = State()
 
 
 @dp.message_handler(commands=['start'])
@@ -53,6 +58,13 @@ async def cmd_start(message):
 @dp.message_handler(text='Рассчитать')
 async def main_menu(message):
     await message.answer('Выберите опцию:', reply_markup=kb_in1)
+
+
+@dp.message_handler(text="Информация")
+async def info(message):
+    about = "Мы продаем лучшие продукты, попробуйте сами"
+    with open("img/about.webp", "rb") as img1:
+        await message.answer_photo(img1, about, reply_markup=kb1)
 
 
 @dp.callback_query_handler(text='formulas')
@@ -88,36 +100,17 @@ async def send_calories(message, state):
     await state.update_data(weight=message.text)
     data = await state.get_data()
     result = 10 * int(data['weight']) + 6.25 * int(data['growth']) + 4.92 * int(data['age']) - 161
-    await message.answer(f"Ваша норма калорий: {result}")
-
+    await message.answer(f'Ваша норма калорий {result}', reply_markup=kb1)
     await state.finish()
 
 
 @dp.message_handler(text='Купить')
 async def get_buying_list(message):
-    # number_1 = 1
-    # await message.answer(f'Название: Продукт {number_1} | Описание: {number_1} | Цена: {number_1 * 100}')
-    # with open('img/product 1.jpg', "rb") as img1:
-    #     await message.answer_photo(img1)
-    # number_2 = 2
-    # await message.answer(f'Название: Продукт {number_2} | Описание: {number_2} | Цена: {number_2 * 100}')
-    # with open('img/product 2.jpg', "rb") as img2:
-    #     await message.answer_photo(img2)
-    # number_3 = 3
-    # await message.answer(f'Название: Продукт {number_3} | Описание: <{number_3} | Цена: {number_3 * 100}')
-    # with open('img/product 3.jpg', "rb") as img3:
-    #     await message.answer_photo(img3)
-    # number_4 = 5
-    # await message.answer(f'Название: Продук {number_4} | Описание: {number_4} | Цена: {number_4 * 100}')
-    # with open('img/product 4.jpg', "rb") as img4:
-    #     await message.answer_photo(img4)
-    # await message.answer("Выберите продукт для покупки:", reply_markup=kb_in2)
-
     for index, product in enumerate(get_all_products()):
         await message.answer(f"Название:{product[1]} | Описание:{product[2]} | Цена: {product[3]}")
         with open(f'img/product {index + 1}.jpg', 'rb') as photo:
             await message.answer_photo(photo)
-    await message.answer("Выберите продукт для покупки:", reply_markup=kb_in2)
+        await message.answer("Выберите продукт для покупки:", reply_markup=kb_in2)
 
 
 @dp.callback_query_handler(text='product_buying')
