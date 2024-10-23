@@ -13,6 +13,11 @@ def initiate_db():
     price INT NOT NULL
     );
     ''')
+    connection.commit()
+    connection.close()
+
+    connection = sqlite3.connect('Products.db')
+    cursor = connection.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Users(
         id INT PRIMARY KEY,
@@ -30,7 +35,6 @@ def get_all_products():
     cursor = connection.cursor()
     cursor.execute(" SELECT * FROM Products")
     products = cursor.fetchall()
-    connection.commit()
     connection.close()
     return products
 
@@ -49,6 +53,19 @@ def add_user(username, email, age, balance):
     cursor.execute("INSERT INTO Users (username, email, age, balance) VALUES (?, ?, ?, ?)", (username, email, age, balance))
     connection.commit()
     connection.close()
+
+
+def is_included(username):
+    connection = sqlite3.connect('Products.db')
+    cursor = connection.cursor()
+    is_in_user = cursor.execute("SELECT * FROM Users WHERE username= ?", (username,))
+    user_included = is_in_user.fetchone()
+    connection.close()
+    if user_included is None:
+        return False
+    else:
+        return True
+
 
 
 connection.commit()
