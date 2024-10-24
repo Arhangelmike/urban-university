@@ -5,7 +5,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.utils import executor
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-import crud_functions
+from crud_functions import get_all_products
 
 
 logging.basicConfig(level=logging.INFO)
@@ -17,11 +17,9 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 kb1 = ReplyKeyboardMarkup(resize_keyboard=True)
-button_0 = KeyboardButton(text='Регистрация')
 button_1 = KeyboardButton(text='Рассчитать')
 button_2 = KeyboardButton(text='Информация')
 button_3 = KeyboardButton(text='Купить')
-kb1.add(button_0)
 kb1.add(button_1)
 kb1.add(button_2)
 kb1.add(button_3)
@@ -51,49 +49,10 @@ class UserState(StatesGroup):
     growth = State()
     weight = State()
 
-class RegistrationState(StatesGroup):
-    username = State()
-    email = State()
-    age = State()
-    balance = State()
-
 
 @dp.message_handler(commands=['start'])
 async def cmd_start(message):
     await message.answer('Добро пожаловать!', reply_markup=kb1)
-
-@dp.message_handler(text=['Регистрация'])
-async def sign_up(message):
-    await message.answer("Введите имя пользователя на русском:")
-    await RegistrationState.username.set()
-
-
-@dp.message_handler(state=RegistrationState.username)
-async def set_username(message, state):
-    user_included = crud_functions.is_included(message.text)
-    if user_included :
-        await message.answer('Пользователь существует, измените имя')
-        await RegistrationState.username.set()
-        return
-    await state.update_data(username=message.text)
-    await message.answer("Введите свой email")
-    await RegistrationState.email.set()
-
-
-@dp.message_handler(state= RegistrationState.email)
-async def set_email(message, state):
-    await state.update_data(email = message.text)
-    await message.answer("Введите возраст")
-    await RegistrationState.age.set()
-
-
-@dp.message_handler(state= RegistrationState.age)
-async def set_age(message, state):
-    await state.update_data(age = message.text)
-    data = await state.get_data()
-    crud_functions.add_user(data['username'],data['email'], data['age'] )
-    await message.answer(f'Регистрация прошла успешно')
-    await state.finish()
 
 
 @dp.message_handler(text='Рассчитать')
@@ -147,7 +106,7 @@ async def send_calories(message, state):
 
 @dp.message_handler(text='Купить')
 async def get_buying_list(message):
-    for index, product in enumerate(crud_functions.get_all_products()):
+    for index, product in enumerate(get_all_products()):
         await message.answer(f"Название:{product[1]} | Описание:{product[2]} | Цена: {product[3]}")
         with open(f'img/product {index + 1}.jpg', 'rb') as photo:
             await message.answer_photo(photo)
