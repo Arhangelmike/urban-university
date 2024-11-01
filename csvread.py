@@ -11,18 +11,20 @@ df['date'] = pd.to_datetime(df['date'])
 uniq_code = df['letter_code'].unique()
 
 fig, ax = plt.subplots()
+global x, y
+for u in df['date']:
+    for d in df['date'].unique():
 
-for d in df['date']:
-    for u in df['date'].unique():
         if d == u:
+            for next_code in df['letter_code'].unique():
+                if (u == d):
+                    y = df['rate']
+                    x = df['date']
 
-            for next_code in df['letter_code']:
-                for next_ucode in df['letter_code'].unique():
-                    if (next_ucode == next_code):
-
-                        plt.plot(df['date'], df['rate'], label=next_code)
+            plt.plot(x, y, label=next_code)
         else:
             continue
+
 ax.grid()
 ax.legend()
 plt.show()
