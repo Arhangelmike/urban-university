@@ -11,17 +11,16 @@ df['date'] = pd.to_datetime(df['date'])
 uniq_code = df['letter_code'].unique()
 
 fig, ax = plt.subplots()
-global x, y
+global x, y, labl
 for u in df['date']:
     for d in df['date'].unique():
-
         if d == u:
             for next_code in df['letter_code'].unique():
                 if (u == d):
                     y = df['rate']
                     x = df['date']
-
-            plt.plot(x, y, label=next_code)
+                    labl=next_code
+                plt.plot(x, y, label=labl)
         else:
             continue
 
