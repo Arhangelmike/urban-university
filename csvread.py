@@ -1,6 +1,7 @@
 #   date;currency;digital_code;letter_code;rate
 import csv
 import numpy as np
+import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
