@@ -9,63 +9,12 @@ import matplotlib.pyplot as plt
 data = pd.read_csv('csv/1111.csv', sep=';', parse_dates=['date'], dayfirst=True)
 unique_codes = data['letter_code'].unique()
 data['rate'] = round(data['rate'], 2)
-
-# for code in unique_codes:
-#         currency_data = data[data['letter_code'] == code]
-#         # plt.plot(currency_data['date'], currency_data['rate'], label=code)
-sns.scatterplot(data=data, x='date', y='rate')
+# print(unique_codes)
+sns.lineplot(
+    x="date",
+    y="rate",
+    hue='letter_code',
+    legend = 'auto',
+    data=data)
+# https://youtu.be/jVNdq-hCZyg?si=lwmmBUIUqkvwMb1N
 plt.show()
-# df['rate'] = round(df['rate'], 2)
-# df = df.sort_values(by='date', ascending=True)
-# unique_codes = df['letter_code'].unique()
-# data = sns.load_dataset("iris")
-# # plt.figure(figsize=(15, 15))
-# for code in unique_codes[14:15]:
-#         currency_data = df[df['letter_code'] == code]
-#         plt.plot(currency_data['date'], currency_data['rate'], label=code)
-#         sns.scatterplot(data=data)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# plt.xlabel('Дата')
-# plt.ylabel('Курс')
-# plt.title('Графики курсов валют')
-# plt.grid()
-#
-# plt.gca().xaxis.set_major_locator(mdates.YearLocator())
-# plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
-# plt.xticks(rotation=45, ha='right')
-#
-# y_ticks = range(int(df['rate'].min()), int(df['rate'].max()) + 1000, 1000)
-# plt.yticks(y_ticks)
-#
-# plt.legend(title='Валюта', bbox_to_anchor=(1.1, 1), loc='upper left', borderaxespad=0.)
-# plt.tight_layout()
-#
-# plt.show()
