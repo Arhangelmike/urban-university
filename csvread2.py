@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-data = pd.read_csv('csv/1111.csv', sep=';', parse_dates=['date'], dayfirst=True)
+data = pd.read_csv('csv/data_182small.csv', sep=';', parse_dates=['date'], dayfirst=True)
 unique_codes = data['letter_code'].unique()
 data['rate'] = round(data['rate'], 2)
 # print(unique_codes)
