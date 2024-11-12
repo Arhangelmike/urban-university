@@ -16,5 +16,5 @@ sns.lineplot(
     hue='letter_code',
     legend = 'auto',
     data=data)
-# https://youtu.be/jVNdq-hCZyg?si=lwmmBUIUqkvwMb1N
+
 plt.show()
