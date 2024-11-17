@@ -8,11 +8,10 @@ df['date'] = pd.to_datetime(df['date'])
 
 unique_codes = df['letter_code'].unique()
 plt.figure(figsize=(20, 12))
+
 for code in unique_codes:
     currency_data = df[df['letter_code'] == code]
     plt.plot(currency_data['date'], currency_data['rate'], label=code)
-
-
 
 
 plt.xlabel('Дата')
