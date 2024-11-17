@@ -10,24 +10,20 @@ df['rate'] = round(df['rate'], 2)
 df = df.sort_values(by='date', ascending=True)
 unique_codes = df['letter_code'].unique()
 
-plt.figure(figsize=(10, 10))
-i=1
 for code in unique_codes:
-
         currency_data = df[df['letter_code'] == code]
-        plt.subplot(2, 3, ++i)
         plt.plot(currency_data['date'], currency_data['rate'], label=code)
-        #
-        # plt.xlabel('Date')
-        # plt.ylabel('Rate')
-        # plt.title('Графики курсов валют')
-        # plt.grid()
+
+plt.xlabel('Date')
+plt.ylabel('Rate')
+plt.title('Графики курсов валют')
+plt.grid()
 #
 # plt.gca().xaxis.set_major_locator(mdates.YearLocator())
 # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
 # plt.xticks(rotation=45, ha='right')
 #
-# y_ticks = range(int(df['rate'].min()), int(df['rate'].max()) + 1000, 1000)
+# y_ticks = range(int(df['rate'].min()), int(df['rate'].max()) + 800, 800)
 # plt.yticks(y_ticks)
 #
 # plt.legend(title='Валюта', bbox_to_anchor=(1.1, 1), loc='upper left', borderaxespad=0.)
