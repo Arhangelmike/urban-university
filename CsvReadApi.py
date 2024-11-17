@@ -16,7 +16,7 @@ def get_yearly_rates(amount, currency, converted_currency, amount_of_date):
     # requests
     access_key = "02d6cfa7ddcb34bef662e95b78f08a3f"
     url = f'https://api.exchangerate.host/timeseries'
-    payload = {"base": currency, "amount": amount, "start_date": date_1year.date(), "end_date": today_date.date(),  "access_key": access_key}
+    payload = {"base": currency, "amount": amount, "start_date":  (today_date - datetime.timedelta(days=1*amount_of_date)), "end_date": today_date.date(),  "access_key": access_key}
     response = requests.get(url, params=payload)
 
     data = response.json()
