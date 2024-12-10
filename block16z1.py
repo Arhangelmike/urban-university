@@ -10,7 +10,7 @@ async def welcome() -> dict:
 async def admin() -> str:
     return "Вы вошли как администратор"
 
-@app.get("/user/user_id")
+@app.get("/user/{user_id}")
 async def user_ID(user_id: str) -> dict:
     return {"message": f"Вы вошли как пользователь № {user_id}"}
 
