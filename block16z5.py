@@ -1,48 +1,59 @@
-from fastapi import FastAPI, status, Body, HTTPException, Request, Form
+from fastapi import FastAPI, HTTPException, Path, Request, Form
 from fastapi.responses import HTMLResponse
+from typing import List, Annotated
 from pydantic import BaseModel
-from typing import List
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
-templates = Jinja2Templates(directory="html")
+templates = Jinja2Templates(directory="templates")
 users = []
 
+
 class User(BaseModel):
-    id: int
+    id: int = None
     username: str
     age: int
 
-@app.get("/")
-def new(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("users.html", {"request": request, "messages": users})
+
+@app.get('/')
+async def get_main_page(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("users.html", {"request": request, "users": users})
 
 
-@app.get("/user/{user_id}")
-def get_all_messages(request: Request, user_id) -> HTMLResponse:
-    return templates.TemplateResponse("users.html", {"request": request, "messages": user_id})
+@app.get('/users/{user_id}')
+async def get_users(request: Request, user_id: int) -> HTMLResponse:
+    return templates.TemplateResponse("users.html", {"request": request, 'user': users[user_id-1]})
 
 
-@app.post("/user/{username}/{age}")
-def create_message(username: str, age: str):
+@app.post('/users/{username}/{age}')
+async def add_user(
+        username: Annotated[str, Path(min_length=3, max_length=30, description='Enter username', example='username')]
+        , age: Annotated[int, Path(ge=18, le=120, description='Enter age', example=30)]) -> User:
     user_id = max(users, key=lambda x: int(x.id)).id + 1 if users else 1
     user = User(id=user_id, username=username, age=age)
     users.append(user)
-    return users
+    return user
 
-@app.put("/user/{user_id}/{username}/{age}")
-def create1_message(user_id: str, username: str, age: str) -> str:
+
+@app.put('/users/{user_id}/{username}/{age}')
+async def update_user(
+        user_id: Annotated[int, Path(ge=0, le=300, description='Enter user_id', example='1')]
+        , username: Annotated[str, Path(min_length=3, max_length=30, description='Enter username', example='username')]
+        , age: Annotated[int, Path(ge=18, le=120, description='Enter age', example=30)]) -> User:
     try:
-        if user_id in users:
-            user_id = f"Имя: {username}, возраст: {age}"
-        return f"The user {user_id} is updated"
-    except IndexError:
+        user = next((u for u in users if u.id == user_id))
+        users[user_id-1] = User(id=user.id, username=username, age=age)
+        return users[user_id]
+    except StopIteration:
         raise HTTPException(status_code=404, detail="User was not found")
 
-@app.delete("/user/{user_id}")
-def delete_user(user_id: int) -> str:
-    for i, user in enumerate(users):
-        if user.id == user_id:
-            deleted_user = users.pop(i)
-            return deleted_user
+
+@app.delete('/users/{user_id}')
+async def delete_user(
+        user_id: Annotated[int, Path(ge=0, le=300, description='Enter user_id', example='1')]) -> User:
+    try:
+        user = next((u for u in users if u.id == user_id))
+        users.remove(user)
+        return user
+    except StopIteration:
         raise HTTPException(status_code=404, detail="User was not found")
