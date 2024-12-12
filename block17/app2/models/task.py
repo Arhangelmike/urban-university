@@ -2,7 +2,8 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import CreateTable
 from block17.app2.backend.db import Base
-# from block17.app2.models.user import User
+from block17.app2.models.user import User
+
 
 class Task(Base):
     __tablename__ = 'tasks'
@@ -14,7 +15,6 @@ class Task(Base):
     completed = Column(Boolean, default=False)
     user_id = Column(Integer, ForeignKey('users.id'), index=True)
     slug = Column(String, unique=True, index=True)
-
     user = relationship('User', back_populates='tasks')
 
 from sqlalchemy.schema import CreateTable

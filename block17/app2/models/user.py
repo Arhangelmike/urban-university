@@ -13,8 +13,6 @@ class User(Base):
     lastname = Column(String)
     age = Column(Integer)
     slug = Column(String, unique=True, index=True)
-
-
     tasks = relationship('Task', back_populates='user')
 
 # from sqlalchemy.schema import CreateTable
