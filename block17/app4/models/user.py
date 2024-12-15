@@ -2,8 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.schema import CreateTable
 from sqlalchemy.orm import relationship
 from block17.app4.backend.db import Base
-from block17.app4.models.task import Task
-# возможно надо но не факт   ---    from block17.app4.models import *
+from block17.app4.models import *
 
 
 class User(Base):

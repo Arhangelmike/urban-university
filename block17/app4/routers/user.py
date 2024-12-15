@@ -5,7 +5,7 @@ from slugify import slugify
 from typing import Annotated
 from block17.app4.backend.db_depends import get_db
 from block17.app4.models import Task, User
-from block17.app4.schemas import CreateTask, UpdateTask
+from block17.app4.schemas import CreateUser, UpdateUser
 
 
 router = APIRouter(prefix='/user', tags=['user'])
