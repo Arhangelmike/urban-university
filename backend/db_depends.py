@@ -1,5 +1,4 @@
-from block17.app4.backend.db import SessionLocal
-
+from backend.db import SessionLocal
 
 async def get_db():
     db = SessionLocal()

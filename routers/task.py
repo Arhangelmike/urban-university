@@ -3,9 +3,10 @@ from sqlalchemy.orm import Session
 from sqlalchemy import insert, select, delete, update
 from slugify import slugify
 from typing import Annotated
-from block17.app4.backend.db_depends import get_db
-from block17.app4.models import Task, User
-from block17.app4.schemas import CreateTask, UpdateTask
+from backend.db_depends import get_db
+# from models import Task, User
+from models import *
+from schemas import CreateTask, UpdateTask
 
 router = APIRouter(prefix='/task', tags=['task'])
 

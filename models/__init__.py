@@ -1,2 +1,2 @@
-from block17.app4.models.user import User
-from block17.app4.models.task import Task
+from models.user import User
+from models.task import Task
