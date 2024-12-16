@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-
-from .routers import task, user
+from .routers.user import *
+from .routers.task import *
 
 app = FastAPI()
 
