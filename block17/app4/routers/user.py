@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, status, HTTPException
-from backend.db import Base
+from ..backend.db import Base
 from sqlalchemy.orm import Session
 from typing import Annotated
-from models import *
-from schemas import CreateUser, UpdateUser
+from ..models import *
+from ..schemas import CreateUser, UpdateUser
 from sqlalchemy import insert, select, update, delete
 from slugify import slugify
-from backend.db_bepends import get_db
+from ..backend.db_depends import get_db
 
 router = APIRouter(prefix="/user", tags=["user"])
 
