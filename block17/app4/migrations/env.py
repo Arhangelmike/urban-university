@@ -18,9 +18,9 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from block17.app4.backend.db import Base
-from block17.app4.models.user import User
-from block17.app4.models.task import Task
+from ..backend.db import Base
+from ..models.task import
+from ..models.user import User
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
