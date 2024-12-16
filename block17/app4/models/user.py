@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.schema import CreateTable
 from sqlalchemy.orm import relationship
-from block17.app4.backend.db import Base
-from block17.app4.models import *
+from ..backend.db import Base
+from ..models import *
 
 
 class User(Base):
