@@ -9,7 +9,7 @@ from slugify import slugify
 from block17.app4.backend.db_depends import get_db
 
 router = APIRouter(prefix="/user", tags=["user"])
-SessionDep = Annotated[Session, Depends(get_db)]
+
 
 @router.get('/')
 async def all_users(db: Annotated[Session, Depends(get_db)]):
