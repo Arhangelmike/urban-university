@@ -9,7 +9,7 @@ from slugify import slugify
 from block17.app4.backend.db_depends import get_db
 
 router = APIRouter(prefix="/user", tags=["user"])
-
+SessionDep = Annotated[Session, Depends(get_db)]
 
 @router.get('/')
 async def all_users(db: Annotated[Session, Depends(get_db)]):
@@ -28,23 +28,14 @@ async def all_users(db: Annotated[Session, Depends(get_db)], user_id: int):
 
 
 @router.post('/create')
-async  def create_user(session: SessionDep, username: str, firstname: str, lastname: str, age: int):
-    users_name = session.scalars(select(User.slug)).all()
-    if slugify(username) in users_name:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail='User with that username already exists'
-        )
-    session.execute(insert(User).values(username=username,
-                                      firstname=firstname,
-                                      lastname=lastname,
-                                      age=age,
-                                      slug=slugify(username)))
-    session.commit()
-    return {
-        'status_code': status.HTTP_201_CREATED,
-        'transaction': 'Successful'
-    }
+async def create_user(db: Annotated[Session, Depends(get_db)], create_user: CreateUser):
+    db.execute(insert(User).values(username=create_user.username,
+                                   firstname=create_user.firstname,
+                                   lastname=create_user.lastname,
+                                   age=create_user.age,
+                                   slug=slugify(create_user.username)))
+    db.commit()
+    return {'status_code': status.HTTP_201_CREATED, 'transaction': 'Successful'}
 
 
 @router.put('/update')
