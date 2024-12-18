@@ -1,25 +1,23 @@
 from fastapi import APIRouter, Depends, status, HTTPException
-from ..backend.db import Base
+from block17.app4.backend.db import Base
 from sqlalchemy.orm import Session
 from typing import Annotated
-from ..models import *
-from ..schemas import CreateUser, UpdateUser
+from block17.app4.models import *
+from block17.app4.schemas import CreateUser, UpdateUser
 from sqlalchemy import insert, select, update, delete
 from slugify import slugify
-from ..backend.db_depends import get_db
+from block17.app4.backend.db_depends import get_db
 
 router = APIRouter(prefix="/user", tags=["user"])
 
 
-@router.get("/")
+@router.get('/')
 async def all_users(db: Annotated[Session, Depends(get_db)]):
     user = db.scalars(select(User).where(User.id)).all()
     return user
 
 
-#----------------------------------------
-
-@router.get("/user_id")
+@router.get('/user_id')
 async def all_users(db: Annotated[Session, Depends(get_db)], user_id: int):
     user = db.scalars(select(User).where(user_id == User.id))
     if user is None:
@@ -29,23 +27,27 @@ async def all_users(db: Annotated[Session, Depends(get_db)], user_id: int):
     return user
 
 
-#----------------------------------------
-
-@router.post("/create")
-async def create_user(db: Annotated[Session, Depends(get_db)], create_user: CreateUser):
-    db.execute(insert(User).values(username=create_user.username,
-                                   firstname=create_user.firstname,
-                                   lastname=create_user.lastname,
-                                   age=create_user.age,
-                                   slug=slugify(create_user.username)))
-    db.commit()
+@router.post('/create')
+async  def create_user(session: SessionDep, username: str, firstname: str, lastname: str, age: int):
+    users_name = session.scalars(select(User.slug)).all()
+    if slugify(username) in users_name:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail='User with that username already exists'
+        )
+    session.execute(insert(User).values(username=username,
+                                      firstname=firstname,
+                                      lastname=lastname,
+                                      age=age,
+                                      slug=slugify(username)))
+    session.commit()
     return {
         'status_code': status.HTTP_201_CREATED,
         'transaction': 'Successful'
     }
-#----------------------------------------
 
-@router.put("/update")
+
+@router.put('/update')
 async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, update_user: CreateUser):
     category = db.scalars(select(User).where(User.id == user_id))
     if category is None:
@@ -65,9 +67,8 @@ async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, upd
         'transaction': 'User update is successful!'
     }
 
-#----------------------------------------
 
-@router.delete("/delete")
+@router.delete('/delete')
 async def delete_user(db: Annotated[Session, Depends(get_db)], user_id: int):
     user = db.scalars(select(User).where(user_id == User.id))
     if user is None:

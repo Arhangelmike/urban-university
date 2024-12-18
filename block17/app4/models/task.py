@@ -1,24 +1,23 @@
-from fastapi import APIRouter
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy.schema import CreateTable
 from sqlalchemy.orm import relationship
-from ..backend.db import Base
-from ..models import *
-
+from sqlalchemy.schema import CreateTable
+from block17.app4.backend.db import Base
+from block17.app4.models.user import User
 
 
 class Task(Base):
-    __tablename__ = "tasks"
-    __table_agrs__ = {"extend_existing": True}
+    __tablename__ = 'tasks'
+    __table_args__ = {'keep_existing': True}
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
     content = Column(String)
     priority = Column(Integer, default=0)
     completed = Column(Boolean, default=False)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), index=True)
     slug = Column(String, unique=True, index=True)
+    user = relationship('User', back_populates='tasks')
 
-    user = relationship("User", back_populates="tasks")
 
-
-from sqlalchemy.schema import CreateTable
+print(CreateTable(User.__table__))
 print(CreateTable(Task.__table__))

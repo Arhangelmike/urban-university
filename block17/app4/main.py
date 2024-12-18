@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from .routers.user import *
-from .routers.task import *
+from block17.app4.routers import task, user
 
 app = FastAPI()
+
 
 @app.get("/")
 async def welcome():
