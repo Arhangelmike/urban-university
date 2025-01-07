@@ -1,0 +1,36 @@
+{% extends 'fourth_task\menu.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOW_games</title>
+</head>
+<body>
+    <header>
+    {% block pagename %} <h1 align="center">Бесплатные серверы </h1>{% endblock %}
+    </header>
+
+    <nav>
+        {% block menu %}
+        {{ block.super }}
+        {% endblock %}
+    </nav>
+
+    <main>
+        {% block content %}
+        <h1 align="center">Лучшие WOW серверы</h1>
+        {% for i in servers %}         <!-- заменил server_list на servers -->
+        <h2> {{i}} <button>Голосовать</button> </h2>
+        {% endfor %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block basement %}
+        <button><a href="http://127.0.0.1:8000/wow">Вернуться на главную страницу</a></button>
+        {% endblock %}
+    </footer>
+
+</body>
+</html>
+

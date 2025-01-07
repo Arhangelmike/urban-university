@@ -1,0 +1,27 @@
+{% extends 'fourth_task\menu.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOW</title>
+</head>
+<body>
+    <header>
+        {% block pagename %} {{ block.super }} {% endblock %}
+    </header>
+
+    <nav>
+        {% block menu %}
+        {{ block.super }}
+        {% endblock %}
+    </nav>
+
+    <main>
+        {% block content %}
+        {{ block.super }}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
+

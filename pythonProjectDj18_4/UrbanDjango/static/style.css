@@ -1,0 +1,18 @@
+h1 {
+color: green;
+}
+
+h2 {
+color: yellow;
+}
+
+h3 {
+color: red;
+}
+
+
+body {
+  font: 600 18px 'Source Sans Pro', sans-serif;
+  color: #585d74;
+  background-color: grey
+}
