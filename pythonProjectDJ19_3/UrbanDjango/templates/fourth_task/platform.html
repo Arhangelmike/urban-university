@@ -1,0 +1,36 @@
+{% extends "fourth_task/menu.html" %}
+
+
+{% block pagename %}
+<h1>{{ text }}</h1>
+<br>
+<h2>Операционные системы, которые подходят для игр:</h2>
+{% endblock %}
+
+
+
+{% block menu %}
+<br>
+{{block.super}}
+<br>
+{% endblock %}
+
+
+
+
+{% block content %}
+<ul>
+{% for key, value in os_dictionary.items %}
+  <li>{{key}} - {{value}}    <button type="button">КУПИТЬ</button> </li>
+    <br>
+{% endfor %}
+</ul>
+<h4>Универсального решения, какой операционной системой пользоваться для игр, нет, так как у каждой из них своя уникальная ниша и набор компромиссов. Выбор зависит от личных предпочтений и потребностей пользователя.</h4>
+<br>
+<br>
+<br>
+<form action="{% url 'home' %}">
+    <input type="submit" value="Вернуться обратно" />
+</form>
+<br>
+{% endblock %}

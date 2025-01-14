@@ -1,0 +1,33 @@
+{% extends "fourth_task/menu.html" %}
+
+{% block pagename %}
+<h1>{{ text }}</h1>
+{% endblock %}
+
+{% block menu %}
+    {{block.super}}
+{% endblock %}
+
+{% block content %}
+<!--    {% for key, value in game_dict.items %}-->
+<!--        {% for i in value %}-->
+<!--            <p>- {{ i }}      <button>Купить</button> </p>-->
+<!--        {% endfor %}-->
+<!--    {% endfor %}-->
+
+ <ul>
+        {% for game in games %}
+            <li>
+                {{ game.title }} | {{ game.description }}. Стоимость: {{ game.cost|floatformat:2}}
+                <button>Купить</button>
+            </li>
+        {% endfor %}
+    </ul>
+<br>
+<form action="{% url 'home' %}">
+    <input type="submit" value="Вернуться обратно" />
+</form>
+<br>
+{% endblock %}
+
+
