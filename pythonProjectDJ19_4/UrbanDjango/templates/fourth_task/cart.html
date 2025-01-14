@@ -1,0 +1,20 @@
+{% extends "fourth_task/menu.html" %}
+
+{% block pagename %}
+<h1>{{ text }}</h1>
+{% endblock %}
+
+{% block menu %}
+<br>
+{{block.super}}
+<br>
+{% endblock %}
+
+{% block content %}
+<br>
+<h2>Извините корзина пуста</h2>
+<br>
+<form action="{% url 'home' %}">
+    <input type="submit" value="Вернуться обратно" />
+</form>
+{% endblock %}

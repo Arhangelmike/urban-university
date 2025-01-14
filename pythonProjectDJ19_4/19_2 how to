@@ -1,0 +1,52 @@
+Python 3.9.9 (tags/v3.9.9:ccb0e6a, Nov 15 2021, 18:08:50) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from task1.models import Buyer
+>>> Buyer.objects.all()
+<QuerySet []>
+>>>
+>>> Buyer.objects.create(name='Fancy', balance=19.00, age=23)
+<Buyer: Fancy>
+>>>
+>>> Buyer.objects.create(name='Oprah', balance=40.00, age=10)
+<Buyer: Oprah>
+>>> Buyer.objects.create(name='Denis', balance=90.40, age=18)
+<Buyer: Denis>
+>>>
+
+при вводе команды
+Game.objects.create(title='Fallout 3', cost=33.30, size=4.9, description='RPG', age_limited=False, buyer='Denis')
+ошибка так как есть связь многих ко многим
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use buyer.set() instead.
+
+
+>>> Game.objects.create(title='Fallout 3', cost=33.30, size=4.9, description='RPG', age_limited=True)
+<Game: Fallout 3>
+>>> Game.objects.create(title='Atomic Heart', cost=40.50, size=12.5, description='shotter', age_limited=True)
+<Game: Atomic Heart>
+>>>
+>>> Game.objects.create(title='Mario warriors', cost=23.30, size=1.7, description='platformer', age_limited=False)
+<Game: Mario warriors>
+>>>
+
+>>> buyer1 = Buyer.objects.get(id=1)
+>>> buyer2 = Buyer.objects.get(id=2)
+>>> buyer3 = Buyer.objects.get(id=3)
+
+запоминаем что:
+Fancy,  age=23    id=1     3 games       три купят
+Oprah,  age=10    id=2     1 game        одну купит
+Denis,  age=18    id=3     2 games       две купят
+
+и
+
+id=1	Mario warriors	23.3	1.7	platformer	0
+id=2	Fallout 3	33.3	4.9	RPG	0
+id=3	Fallout 3	33.3	4.9	RPG	1
+id=4	Atomic Heart	40.5	12.5	shotter	1
+id=5	Mario warriors	23.3	1.7	platformer	0
+
+
+>>> Game.objects.get(id=1).buyer.set((buyer1, buyer2, buyer3))
+>>> Game.objects.get(id=4).buyer.set((buyer1,))
+>>> Game.objects.get(id=2).buyer.set((buyer1, buyer3))
