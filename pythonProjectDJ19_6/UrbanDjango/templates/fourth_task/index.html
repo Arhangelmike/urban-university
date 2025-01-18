@@ -1,0 +1,23 @@
+{% extends "fourth_task/menu.html" %}
+
+{% block pagename %}
+    <h2>{{ text }}</h2>
+{% endblock %}
+
+
+
+{% block menu %}
+    <h2><a href="#">{{ text }}</a></h2>
+    <h2><a href="{% url 'games' %}">Игры</a></h2>
+    <h2><a href="{% url 'cart' %}">Корзина</a></h2>
+    <h2><a href="{% url 'platform' %}">Операционные системы</a></h2>
+<!--    <p><a href="http://127.0.0.1:8000/by_html/">by_html</a></p>-->
+    <p><a href="http://127.0.0.1:8000/by_django/">by_django</a></p>
+    <p><a href="http://127.0.0.1:8000/platform/news/">Новости</a></p>
+{% endblock %}
+
+{% block content %}
+<p> </p>
+    <br>
+{% endblock %}
+
