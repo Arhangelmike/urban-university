@@ -42,7 +42,7 @@ python manage.py migrate
  ![image](https://github.com/user-attachments/assets/b2e3f039-df90-475d-a802-23c1419b5f09)
 
 
-Добавились базы с предыдущего проекта.
+Добавились базы с предыдущего проекта. Но пустые.
 ![image](https://github.com/user-attachments/assets/b2f2ac59-2433-40f3-bd9f-6fb83e64c3a5)
 
  
